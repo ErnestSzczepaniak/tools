@@ -20,3 +20,12 @@ TEST_CASE("asd")
 
     show_bytes(word);
 }
+
+TEST_CASE("awee")
+{
+    unsigned char test = 0x18;
+
+    auto res = tools::bit::invert(test);
+
+    show_bytes(res);
+}

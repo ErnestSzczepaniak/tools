@@ -9,7 +9,7 @@
  * @details	
 **/
 
-namespace tools::byte
+namespace tools::bytes
 {
 
 enum class Order : unsigned char

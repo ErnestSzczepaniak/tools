@@ -9,7 +9,7 @@
  * @details	
 **/
 
-namespace tools::bytes
+namespace tools::byte
 {
 
 enum class Order : unsigned char
@@ -33,7 +33,7 @@ static inline void set(T & variable, int byte, unsigned char value)
 }
 
 template<typename T>
-static inline T invert(T & variable)
+static inline void invert(T & variable)
 {
     T temp;
 
@@ -42,7 +42,7 @@ static inline T invert(T & variable)
 
     for (int i = 0; i < sizeof(T); i++) ptr_out[sizeof(T) - i - 1] = ptr_in[i];
 
-    return temp;
+    variable = temp;
 }
 
 }; /* namespace: tools::byte */

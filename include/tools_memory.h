@@ -58,12 +58,44 @@ static inline void right(T & variable, int bytes)
 namespace shift::bits
 {
 
+template<typename T>
+static inline void left(T & variable, int bits)
+{
+    T temp = variable;
 
+    for (int i = 0; i < sizeof(T) * 8 - bits; i++)
+    {
+        bit::set(temp, i, bit::get(variable, i + bits, bit::Order::MSB), bit::Order::MSB);
+    }
+    
+    for (int i = 0; i < bits; i++)
+    {
+        bit::set(temp, sizeof(T) * 8 - bits + i, false, bit::Order::MSB);
+    }
+
+    variable = temp;
+}
+
+template<typename T>
+static inline void right(T & variable, int bits)
+{
+    T temp = variable;
+    
+    for (int i = 0; i < sizeof(T) * 8 - bits; i++)
+    {
+        bit::set(temp, i + bits, bit::get(variable, i, bit::Order::MSB), bit::Order::MSB);
+    }
+
+    for (int i = 0; i < bits; i++)
+    {
+        bit::set(temp, i, false, bit::Order::MSB);
+    }
+
+    variable = temp;
+}
 
 }; /* namespace: shift::bit */
 
-
 }; /* namespace: tools::memory */
-
 
 #endif /* define: tools_memory_h */

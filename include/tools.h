@@ -9,6 +9,7 @@
  * @details	
 **/
 
+#include "tools_address.h"
 #include "tools_bit.h"
 #include "tools_byte.h"
 #include "tools_mask.h"

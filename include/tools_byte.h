@@ -9,43 +9,32 @@
  * @details	
 **/
 
+#include "tools_memory.h"
+#include "tools_address.h"
+
 namespace tools::byte
 {
-
-enum class Order : unsigned char
-{
-    LITTLE,
-    BIT
-}; /* enum: Order */
 
 template<typename T>
 static inline unsigned char get(T & variable, int byte)
 {
-    auto * ptr = (unsigned char *) &variable;
-    return ptr[byte];
+    return address::of(variable)[byte];
 }
 
 template<typename T>
 static inline void set(T & variable, int byte, unsigned char value)
 {
-    auto * ptr = (unsigned char *) &variable;
-    ptr[byte] = value;
+    address::of(variable)[byte] = value;
 }
 
 template<typename T>
-static inline void invert(T & variable)
+static inline void swap(T & variable_1, T & variable_2, int byte)
 {
-    T temp;
-
-    auto * ptr_in = (unsigned char *) &variable;
-    auto * ptr_out = (unsigned char *) &temp;
-
-    for (int i = 0; i < sizeof(T); i++) ptr_out[sizeof(T) - i - 1] = ptr_in[i];
-
-    variable = temp;
+    unsigned char temp = address::of(variable_1)[byte];
+    address::of(variable_1)[byte] = address::of(variable_2)[byte];
+    address::of(variable_2)[byte] = temp;
 }
 
 }; /* namespace: tools::byte */
-
 
 #endif /* define: tools_byte_h */

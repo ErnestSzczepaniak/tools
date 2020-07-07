@@ -37,7 +37,7 @@ static inline void set(T & variable, int bit, bool value = true, Order order = O
 }
 
 template<typename T>
-static inline T invert(T & variable)
+static inline void invert(T & variable)
 {
     T temp;
 
@@ -46,7 +46,7 @@ static inline T invert(T & variable)
         set(temp, i, get(variable, sizeof(T) * 8 - i - 1));  
     }
 
-    return temp;
+    variable = temp;
 } 
 
 }; /* namespace: tools::bit */

@@ -30,27 +30,30 @@ void show_bits(T & value)
     printf("\r\n");
 }
 
-TEST_CASE("asd")
+struct Test
 {
-    unsigned int word = 0x11223344;
+    int k;
+}; /* structure: Test */
 
-    tools::memory::shift::bytes::right(word, 4 );
-
-    show_bytes(word);
-}
 
 TEST_CASE("awee")
 {
+
+
     using namespace tools;
 
-    unsigned int test = 0xff553344;
-    byte::invert(test);
+    auto * t = address::from<Test>(0x20000000);
 
-    show_bytes(test);
-    show_bits(test);
+    unsigned char ww[8];
+    
+    for (int i = 0; i < 8; i++)
+    {
+        ww[i] = i;
+    }
+    
+    show_bytes(ww);
 
-    memory::shift::bits::left(test, 20);
+    memory::invert(ww);
 
-    show_bytes(test);
-    show_bits(test);
+    show_bytes(ww);
 }

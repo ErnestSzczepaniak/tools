@@ -10,6 +10,7 @@
 **/
 
 #include "string.h"
+#include "tools_address.h"
 
 namespace tools::memory
 {
@@ -32,69 +33,19 @@ static inline bool compare(T & destination, T & source)
     return (memcmp(&destination, &source, sizeof(T)) == 0);
 }
 
-namespace shift::bytes
-{
-
 template<typename T>
-static inline void left(T & variable, int bytes)
+static inline void invert(T & destination)
 {
-    auto * ptr = (unsigned char *) &variable;
+    unsigned char buffer[sizeof(T)];
+    auto * ptr = address::of(destination);
 
-    memmove(&ptr[0], &ptr[bytes], sizeof(T) - bytes);
-    memset(&ptr[sizeof(T) - bytes], 0, bytes);
-}
+    memory::copy(buffer, destination);
 
-template<typename T>
-static inline void right(T & variable, int bytes)
-{
-    auto * ptr = (unsigned char *) &variable;
-
-    memmove(&ptr[bytes], &ptr[0], sizeof(T) - bytes);
-    memset(&ptr[0], 0, bytes);
-}
-
-}; /* namespace: shift::byte */
-
-namespace shift::bits
-{
-
-template<typename T>
-static inline void left(T & variable, int bits)
-{
-    T temp = variable;
-
-    for (int i = 0; i < sizeof(T) * 8 - bits; i++)
+    for (int i = 0; i < sizeof(T); i++)
     {
-        bit::set(temp, i, bit::get(variable, i + bits, bit::Order::MSB), bit::Order::MSB);
+        ptr[i] = buffer[sizeof(T) - i - 1];
     }
-    
-    for (int i = 0; i < bits; i++)
-    {
-        bit::set(temp, sizeof(T) * 8 - bits + i, false, bit::Order::MSB);
-    }
-
-    variable = temp;
 }
-
-template<typename T>
-static inline void right(T & variable, int bits)
-{
-    T temp = variable;
-    
-    for (int i = 0; i < sizeof(T) * 8 - bits; i++)
-    {
-        bit::set(temp, i + bits, bit::get(variable, i, bit::Order::MSB), bit::Order::MSB);
-    }
-
-    for (int i = 0; i < bits; i++)
-    {
-        bit::set(temp, i, false, bit::Order::MSB);
-    }
-
-    variable = temp;
-}
-
-}; /* namespace: shift::bit */
 
 }; /* namespace: tools::memory */
 

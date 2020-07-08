@@ -46,7 +46,8 @@ TEST_CASE("awee")
 
     copy::variable::to_variable(t, awww);
 
-    tools::compare::memory::with_memory(awww, &t, 4);
+    auto res = tools::compare::variable::with_value(t, 0x11223344);
+
 
 
     show_bytes(t);

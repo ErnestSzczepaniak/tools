@@ -15,5 +15,6 @@
 #include "tools_mask.h"
 #include "tools_memory.h"
 #include "tools_string.h"
+#include "tools_shift.h"
 
 #endif /* define: tools_h */

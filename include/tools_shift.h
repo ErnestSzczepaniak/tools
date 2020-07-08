@@ -1,3 +1,52 @@
+#ifndef _tools_shift_h
+#define _tools_shift_h
+
+/**
+ * @file	tools_shift.h
+ * @author	en2
+ * @date	08-07-2020
+ * @brief	
+ * @details	
+**/
+
+#include "tools_memory.h"
+#include "tools_byte.h"
+#include "tools_bit.h"
+
+namespace tools::shift
+{
+
+namespace byte
+{
+
+template<typename T>
+static inline void left(T & variable, int bytes)
+{
+    if (bytes > sizeof(T)) return;
+
+    memory::move(address::from(variable, 0), address::from(variable, bytes), sizeof(T) - bytes);
+    memory::set(address::from(variable, sizeof(T) - bytes), 0, bytes);
+}
+
+template<typename T>
+static inline void right(T & variable, int bytes)
+{
+    if (bytes > sizeof(T)) return;
+
+    auto * ptr = address::of(variable);
+
+    memory::move(&ptr[bytes], &ptr[0], sizeof(T) - bytes);
+    memory::set(&ptr[0], 0, bytes);
+}
+
+}; /* namespace: byte */
+
+}; /* namespace: tools::shift */
+
+#endif /* define: tools_shift_h */
+
+
+
 // #ifndef _tools_shift_h
 // #define _tools_shift_h
 
@@ -15,23 +64,7 @@
 // namespace shift::bytes
 // {
 
-// template<typename T>
-// static inline void left(T & variable, int bytes)
-// {
-//     auto * ptr = (unsigned char *) &variable;
 
-//     memmove(&ptr[0], &ptr[bytes], sizeof(T) - bytes);
-//     memset(&ptr[sizeof(T) - bytes], 0, bytes);
-// }
-
-// template<typename T>
-// static inline void right(T & variable, int bytes)
-// {
-//     auto * ptr = (unsigned char *) &variable;
-
-//     memmove(&ptr[bytes], &ptr[0], sizeof(T) - bytes);
-//     memset(&ptr[0], 0, bytes);
-// }
 
 // }; /* namespace: shift::byte */
 

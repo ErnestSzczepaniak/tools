@@ -12,9 +12,11 @@
 namespace tools::mask
 {
 
-static inline unsigned int get(int offset, int size)
+template<typename T = unsigned int>
+static inline T get(int offset, int size, bool value = true)
 {
-    return (((1 << size) - 1) << offset);
+    auto mask = ((((T) 1 << size) - 1) << offset);
+    return value ? mask : ~mask;
 }
 
 }; /* namespace: tools::mask */

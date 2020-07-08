@@ -30,19 +30,10 @@ void show_bits(T & value)
     printf("\r\n");
 }
 
-struct Test
-{
-    int k;
-}; /* structure: Test */
-
 
 TEST_CASE("awee")
 {
-
-
     using namespace tools;
-
-    auto * t = address::from<Test>(0x20000000);
 
     unsigned char ww[8];
     
@@ -51,9 +42,18 @@ TEST_CASE("awee")
         ww[i] = i;
     }
     
-    show_bytes(ww);
 
-    memory::invert(ww);
 
-    show_bytes(ww);
+    unsigned int t = 0x11223344;
+    unsigned int w = 0;
+    auto * tp = &t;
+    auto * wp = &w;
+
+
+    show_bytes(t);
+
+    memory::move(w, tp, 4);
+
+    show_bytes(t);
+    show_bytes(w);
 }

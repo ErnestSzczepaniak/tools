@@ -9,12 +9,8 @@
  * @details	
 **/
 
-#include "tools_address.h"
-#include "tools_bit.h"
-#include "tools_byte.h"
-#include "tools_mask.h"
-#include "tools_memory.h"
-#include "tools_string.h"
-#include "tools_shift.h"
+#include "tools_copy.h"
+#include "tools_set.h"
+#include "tools_compare.h"
 
 #endif /* define: tools_h */

@@ -24,8 +24,8 @@ static inline void left(T & variable, int bytes)
 {
     if (bytes > sizeof(T)) return;
 
-    memory::move(address::from(variable, 0), address::from(variable, bytes), sizeof(T) - bytes);
-    memory::set(address::from(variable, sizeof(T) - bytes), 0, bytes);
+    // memory::move(address::from(variable, 0), address::from(variable, bytes), sizeof(T) - bytes);
+    // memory::set(address::from(variable, sizeof(T) - bytes), 0, bytes);
 }
 
 template<typename T>
@@ -35,8 +35,8 @@ static inline void right(T & variable, int bytes)
 
     auto * ptr = address::of(variable);
 
-    memory::move(&ptr[bytes], &ptr[0], sizeof(T) - bytes);
-    memory::set(&ptr[0], 0, bytes);
+    // memory::move(&ptr[bytes], &ptr[0], sizeof(T) - bytes);
+    // memory::set(&ptr[0], 0, bytes);
 }
 
 }; /* namespace: byte */

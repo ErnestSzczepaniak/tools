@@ -20,14 +20,8 @@ static inline R of(T & variable)
     return (R)(&variable);
 }
 
-template<typename T, typename R = unsigned char *>
-static inline R from(T & variable, int offset)
-{
-    return ((R)(&variable) + offset);
-}
-
 template<typename R, typename T>
-static inline R * at(T address)
+static inline R * create(T address)
 {
     return ((R*) address);
 }

@@ -12,23 +12,10 @@
 #include "string.h"
 #include "tools_address.h"
 
-// referencja do wartosci
-// referenca do wskaznika
-// wskaznik
-
 namespace tools::memory
 {
 
 /* ---------------------------------------------| copy |--------------------------------------------- */
-
-template<typename T1, typename T2>
-static inline void copy(T1 & destination, T2 & source, int size)
-{
-    if constexpr (!std::is_pointer_v<T1> && !std::is_pointer_v<T2>) memcpy(&destination, &source, size);
-    else if constexpr (!std::is_pointer_v<T1> && std::is_pointer_v<T2>) memcpy(&destination, source, size);
-    else if constexpr (std::is_pointer_v<T1> && std::is_pointer_v<T2>) memcpy(destination, source, size);
-    else if constexpr (std::is_pointer_v<T1> && !std::is_pointer_v<T2>) memcpy(destination, &source, size);
-}
 
 template<typename T1, typename T2>
 static inline void copy(T1 * destination, T2 * source, int size)
@@ -39,28 +26,12 @@ static inline void copy(T1 * destination, T2 * source, int size)
 /* ---------------------------------------------| set |--------------------------------------------- */
 
 template<typename T>
-static inline void set(T & destination, unsigned char value, int size)
-{
-    if constexpr (std::is_pointer_v<T>) memset(destination, value, size);
-    else if constexpr (!std::is_pointer_v<T>) memset(&destination, value, size);
-}
-
-template<typename T>
 static inline void set(T * destination, unsigned char value, int size)
 {
     memset(destination, value, size);
 }
 
 /* ---------------------------------------------| move |--------------------------------------------- */
-
-template<typename T1, typename T2>
-static inline void move(T1 & destination, T2 & source, int size)
-{
-    if constexpr (!std::is_pointer_v<T1> && !std::is_pointer_v<T2>) memmove(&destination, &source, size);
-    else if constexpr (!std::is_pointer_v<T1> && std::is_pointer_v<T2>) memmove(&destination, source, size);
-    else if constexpr (std::is_pointer_v<T1> && std::is_pointer_v<T2>) memmove(destination, source, size);
-    else if constexpr (std::is_pointer_v<T1> && !std::is_pointer_v<T2>) memmove(destination, &source, size);
-}
 
 template<typename T1, typename T2>
 static inline void move(T1 * destination, T2 * source, int size)
@@ -71,20 +42,19 @@ static inline void move(T1 * destination, T2 * source, int size)
 /* ---------------------------------------------| compare |--------------------------------------------- */
 
 template<typename T1, typename T2>
-static inline bool compare(T1 & destination, T2 & source, int size)
-{
-    if constexpr (!std::is_pointer_v<T1> && !std::is_pointer_v<T2>) (memcmp(&destination, &source, size) == 0);
-    else if constexpr (!std::is_pointer_v<T1> && std::is_pointer_v<T2>) (memcmp(&destination, source, size) == 0);
-    else if constexpr (std::is_pointer_v<T1> && std::is_pointer_v<T2>) (memcmp(destination, source, size) == 0);
-    else if constexpr (std::is_pointer_v<T1> && !std::is_pointer_v<T2>) (memcmp(destination, &source, size) == 0);
-
-    return false;
-}
-
-template<typename T1, typename T2>
 static inline bool compare(T1 * destination, T2 * source, int size)
 {
     return (memcmp(destination, source, size) == 0);
+}
+
+/* ---------------------------------------------| find |--------------------------------------------- */
+
+template<typename T>
+static inline int find(T * destination, unsigned char value, int size)
+{
+    auto * ptr = (unsigned char *) destination;
+    auto * result = (unsigned char *) memchr(destination, value, size);
+    return (result - ptr);
 }
 
 }; /* namespace: tools::memory */

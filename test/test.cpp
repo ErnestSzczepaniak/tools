@@ -1,6 +1,12 @@
 #include "test.h"
 #include "tools.h"
 
+struct Te
+{
+    int k2;
+}; /* structure: T */
+
+
 template<typename T>
 void show_bytes(T & payload)
 {
@@ -44,10 +50,9 @@ TEST_CASE("awee")
     auto * wp = &w;
 
 
-    copy::variable::to_variable(t, awww);
+    invert::bytes::in_memory(&t, 4);
 
-    auto res = tools::compare::variable::with_value(t, 0x11223344);
-
+    auto * ptr = cast::value_to<Te *>(0x11223344);
 
 
     show_bytes(t);

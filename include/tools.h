@@ -12,5 +12,7 @@
 #include "tools_copy.h"
 #include "tools_set.h"
 #include "tools_compare.h"
+#include "tools_cast.h"
+#include "tools_invert.h"
 
 #endif /* define: tools_h */

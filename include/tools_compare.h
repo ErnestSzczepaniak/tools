@@ -14,6 +14,16 @@
 namespace tools::compare
 {
 
+namespace string
+{
+
+static inline bool with_string(const char * string_1, const char * string_2)
+{
+    return (strcmp(string_1, string_2) == 0);
+}
+
+}; /* namespace: string */
+
 namespace memory
 {
 

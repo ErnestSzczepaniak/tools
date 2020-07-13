@@ -4,27 +4,21 @@
 /**
  * @file	tools_cast.h
  * @author	en2
- * @date	12-07-2020
+ * @date	13-07-2020
  * @brief	
  * @details	
 **/
 
-namespace tools::cast
+namespace tools
 {
 
 template<typename R, typename T>
-static inline R pointer_to(T * pointer)
+static inline R cast(T value)
 {
-    return (R)(pointer);
+    return *((R*)&value);
 }
 
-template<typename R, typename T>
-static inline R value_to(T value)
-{
-    return (R)(value);
-}
-
-}; /* namespace: tools::cast */
+}; /* namespace: tools */
 
 
 #endif /* define: tools_cast_h */

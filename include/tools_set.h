@@ -11,22 +11,29 @@
 
 #include "string.h"
 
-namespace tools::set
+namespace tools
 {
 
 template<typename T>
-static inline void memory(T * memory, unsigned char value, int size)
-{   
+static inline void set(T * memory, unsigned char value, int size = sizeof(T))
+{
     memset(memory, value, size);
 }
 
-template<typename T>
-static inline void variable(T & variable, unsigned char value, int size = sizeof(T))
+template<typename T> 
+static inline void set(T & variable, unsigned char value, int size = sizeof(T))
 {
-    memset(&variable, value, size);
+    set(&variable, value, size);
 }
 
-}; /* namespace: tools::set */
+template<typename T>
+static inline T set(const T & value_1, unsigned char value_2, int size = sizeof(T))
+{
+    T temp = value_1;
+    set(&temp, value_2, size);
+    return temp;
+}
 
+}; /* namespace: tools */
 
 #endif /* define: tools_set_h */

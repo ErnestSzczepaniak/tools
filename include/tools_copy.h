@@ -4,74 +4,83 @@
 /**
  * @file	tools_copy.h
  * @author	en2
- * @date	08-07-2020
+ * @date	13-07-2020
  * @brief	
  * @details	
 **/
 
 #include "string.h"
 
-namespace tools::copy
+namespace tools
 {
 
 /* ---------------------------------------------| memory |--------------------------------------------- */
 
-namespace memory
-{
-
 template<typename T1, typename T2>
-static inline void to_memory(T1 * source, T2 * destination, int size)
+static inline void copy(T1 * memory_1, T2 * memory_2, int size = sizeof(T1))
 {
-    memcpy(destination, source, size);
+    memcpy(memory_1, memory_2, size);
 }
 
 template<typename T1, typename T2>
-static inline void to_variable(T1 * source, T2 & destination, int size)
+static inline void copy(T1 * memory, T2 & variable, int size = sizeof(T1))
 {
-    memcpy(&destination, source, size);
+    copy(memory, &variable, size);
 }
 
-}; /* namespace: memory */
+template<typename T1, typename T2>
+static inline void copy(T1 * memory, const T2 & value, int size = sizeof(T1))
+{
+    copy(memory, &value, size);
+}
 
 /* ---------------------------------------------| variable |--------------------------------------------- */
 
-namespace variable
-{
-
 template<typename T1, typename T2>
-static inline void to_memory(T1 & source, T2 * destination, int size = sizeof(T1))
+static inline void copy(T1 & variable, T2 * memory, int size = sizeof(T1))
 {
-    memcpy(destination, &source, size);
+    copy(&variable, memory, size);
 }
 
 template<typename T1, typename T2>
-static inline void to_variable(T1 & source, T2 & destination, int size = sizeof(T1))
+static inline void copy(T1 & variable_1, T2 & variable_2, int size = sizeof(T1))
 {
-    memcpy(&destination, &source, size);
+    copy(&variable_1, &variable_2, size);
 }
 
-}; /* namespace: variable */
-
+template<typename T1, typename T2>
+static inline void copy(T1 & variable, const T2 & value, int size = sizeof(T1))
+{
+    copy(&variable, &value, size);
+}
 
 /* ---------------------------------------------| value |--------------------------------------------- */
 
-namespace value
-{
-
 template<typename T1, typename T2>
-static inline void to_memory(T1 source, T2 * destination, int size = sizeof(T1))
+static inline T1 copy(const T1 & value, T2 * memory, int size = sizeof(T1))
 {
-    memcpy(destination, &source, size);
+    T1 temp = value;
+    copy(&temp, memory, size);
+    return temp;
 }
 
 template<typename T1, typename T2>
-static inline void to_variable(T1 source, T2 & destination, int size = sizeof(T1))
+static inline T1 copy(const T1 & value, T2 & variable_2, int size = sizeof(T1))
 {
-    memcpy(&destination, &source, size);
+    T1 temp = value;
+    copy(&temp, &variable_2, size);
+    return temp;
 }
 
-}; /* namespace: value */
+template<typename T1, typename T2>
+static inline T1 copy(const T1 & value_1, const T2 & value_2, int size = sizeof(T1))
+{
+    T1 temp = value_1;
+    copy(&temp, &value_2, size);
+    return temp;
+}
 
-}; /* namespace: tools::copy */
+}; /* namespace: tools */
+
 
 #endif /* define: tools_copy_h */

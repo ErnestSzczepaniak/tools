@@ -14,5 +14,6 @@
 #include "tools_compare.h"
 #include "tools_cast.h"
 #include "tools_invert.h"
+#include "tools_expect.h"
 
 #endif /* define: tools_h */

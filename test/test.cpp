@@ -38,28 +38,34 @@ void show_bytes(T & payload)
 
 #include "tools.h"
 
+template<typename R, typename T>
+static inline R address(T & variable)
+{
+    return (R)&variable;
+}
+
 TEST_CASE("awee")
 {
+
+    auto weawe = tools::set(0x11223344, 0x55, 1);
+
+    show_bytes(weawe);
+
     using namespace tools;
 
-    unsigned char awww[10];
+    unsigned char awww[9];
+    for (int i = 0; i < 9; i++)
+    {
+        awww[i] = i;
+    }
     
-    unsigned int t = 0x11223344;
-    unsigned int w = 0;
-    auto * tp = &t;
-    auto * wp = &w;
+    tools::expect::compilation(sizeof(int) == 4);
 
-
-    invert::bytes::in_memory(&t, 4);
-
-    auto * ptr = cast::value_to<Te *>(0x11223344);
-    
-
-
-    show_bytes(t);
-
-    auto st = sizeof(unsigned int * &);
-
-    show_bytes(t);
     show_bytes(awww);
+
+    invert::bytes(awww, 9);
+
+    show_bytes(awww);
+
+
 }

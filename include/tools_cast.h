@@ -9,11 +9,17 @@
  * @details	
 **/
 
-namespace tools
+namespace tools::cast
 {
 
 template<typename R, typename T>
-static inline R cast(T value)
+static inline R variable(T & variable)
+{
+    return *((R*)&variable);
+}
+
+template<typename R, typename T>
+static inline R value(const T & value)
 {
     return *((R*)&value);
 }

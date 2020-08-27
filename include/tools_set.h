@@ -10,29 +10,55 @@
 **/
 
 #include "string.h"
+#include "tools_cast.h"
 
-namespace tools
+namespace tools::set
 {
 
 template<typename T>
-static inline void set(T * memory, unsigned char value, int size = sizeof(T))
+static inline void memory(T * memory, int size, unsigned char value)
 {
     memset(memory, value, size);
 }
 
 template<typename T> 
-static inline void set(T & variable, unsigned char value, int size = sizeof(T))
+static inline void variable(T & variable, unsigned char value)
 {
-    set(&variable, value, size);
+    memory(&variable, sizeof(T), value);
+}
+
+namespace byte
+{
+
+template<typename T>
+static inline void in_memory(T * memory, int position, unsigned char value)
+{
+    auto * ptr = cast::variable<unsigned char *>(memory);
+
+    ptr[position] = value;
 }
 
 template<typename T>
-static inline T set(const T & value_1, unsigned char value_2, int size = sizeof(T))
+static inline void in_variable(T & variable, int position, unsigned char value)
 {
-    T temp = value_1;
-    set(&temp, value_2, size);
-    return temp;
+    in_memory(&variable, position, value);
 }
+
+}; /* namespace: byte */
+
+namespace bit
+{
+
+template<typename T>
+static inline void in_memory(T * memory, int position, bool value)
+{
+    auto * ptr = cast::variable<unsigned char *>(memory);
+    auto byte = position / 8;
+
+    ptr[position] = value;
+}
+
+}; /* namespace: bit */
 
 }; /* namespace: tools */
 

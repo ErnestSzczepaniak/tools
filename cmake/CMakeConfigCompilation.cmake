@@ -17,7 +17,7 @@ set(private_definition_host     )
 
 # ---------------------------------------------| option |--------------------------------------------- #
 
-set(public_option_common        -std=c++2a -Wno-int-to-pointer-cast)
+set(public_option_common        -std=c++2a -Wno-int-to-pointer-cast -fno-operator-names)
 set(public_option_target        )
 set(public_option_host          )
 

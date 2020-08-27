@@ -9,13 +9,16 @@
  * @details	
 **/
 
-namespace tools::invert 
+namespace tools::invert
+{
+
+namespace bytes
 {
 
 template<typename T>
-static inline void bytes(T * memory, int size = sizeof(T))
+static inline void in_memory(T * memory, int size)
 {
-    auto * ptr = cast<unsigned char *>(memory);
+    auto * ptr = cast::value<unsigned char *>(memory);
 
     for (int i = 0; i < size / 2; i++)
     {
@@ -26,9 +29,9 @@ static inline void bytes(T * memory, int size = sizeof(T))
 }
 
 template<typename T>
-static inline void bytes(T & variable, int size = sizeof(T))
+static inline void in_variable(T & variable, int size = sizeof(T))
 {
-    auto * ptr = cast<unsigned char *>(&variable);
+    auto * ptr = cast::value<unsigned char *>(&variable);
 
     for (int i = 0; i < size / 2; i++)
     {
@@ -38,23 +41,16 @@ static inline void bytes(T & variable, int size = sizeof(T))
     }
 }
 
-template<typename T>
-static inline T bytes(const T & value, int size = sizeof(T))
+}; /* namespace: bytes */
+
+namespace bits
 {
-    T temp = value;
-    auto * ptr = cast<unsigned char *>(&temp);
 
-    for (int i = 0; i < size / 2; i++)
-    {
-        auto temp = ptr[i];
-        ptr[i] = ptr[size - i - 1];
-        ptr[size - i - 1] = temp;
-    }
 
-    return temp;
-}
+
+}; /* namespace: bits */
+
 
 }; /* namespace: tools */
-
 
 #endif /* define: tools_invert_h */

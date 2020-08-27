@@ -44,13 +44,31 @@ static inline R address(T & variable)
     return (R)&variable;
 }
 
+
+#include <type_traits>
+
+
+template<typename T>
+void ttt(T & v, int bits)
+{
+    if (std::is_pointer_v<T&>)
+    {
+        printf("Is pointer\n");
+    }
+    else
+    {
+        printf("Is reference\n");
+    }
+}
+
+template<typename T>
+int ttt(const T & v, int bits)
+{
+    return {};
+}
+
 TEST_CASE("awee")
 {
-
-    auto weawe = tools::set(0x11223344, 0x55, 1);
-
-    show_bytes(weawe);
-
     using namespace tools;
 
     unsigned char awww[9];
@@ -58,14 +76,25 @@ TEST_CASE("awee")
     {
         awww[i] = i;
     }
-    
-    tools::expect::compilation(sizeof(int) == 4);
 
     show_bytes(awww);
 
-    invert::bytes(awww, 9);
+    set::byte::in_memory(awww, 8, 0x22);
+    set::memory(awww, 9, 0x22);
 
-    show_bytes(awww);
+    bool s;
+    bit::set::from_value::to_pointer(false, &s);
 
+    bit::boolean::add::from_reference::with_value(s, false);
+
+    int k;
+    auto * awe = &k;
+
+    ttt(awww, 1);
+    auto awewae = ttt(1, 1);
+    //shift<const int &>(1, 1);
+
+
+    // tools::copy::memory::to_variable()
 
 }

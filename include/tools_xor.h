@@ -9,10 +9,19 @@
  * @details	
 **/
 
-namespace tools
+namespace tools::XOR
 {
 
+namespace memory
+{
 
+template<typename T1, typename T2>
+static inline void with_memory(T1 * memory_1, T2 * memory_2, int size)
+{
+
+}
+
+}; /* namespace: memory */
 
 }; /* namespace: tools */
 

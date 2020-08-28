@@ -82,17 +82,15 @@ TEST_CASE("awee")
     set::byte::in_memory(awww, 8, 0x22);
     set::memory(awww, 9, 0x22);
 
-    bool s;
-    bit::set::from_value::to_pointer(false, &s);
+    auto v = byte::shift::left(0xc0, 2, true);
+    show_bytes(v);
 
-    bit::boolean::add::from_reference::with_value(s, false);
+    auto df = byte::count::bits(0x13, false);
 
-    int k;
-    auto * awe = &k;
+    auto t = byte::boolean::negate(0xff, 0, 4);
 
-    ttt(awww, 1);
-    auto awewae = ttt(1, 1);
-    //shift<const int &>(1, 1);
+
+    show_bytes(t);
 
 
     // tools::copy::memory::to_variable()

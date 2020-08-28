@@ -10,14 +10,12 @@
 **/
 
 #include "tools_copy.h"
-#include "tools_shift.h"
 #include "tools_set.h"
 #include "tools_compare.h"
 #include "tools_cast.h"
 #include "tools_invert.h"
 #include "tools_expect.h"
-#include "tools_xor.h"
 
-#include "tools_bit.h"
+#include "tools_byte.h"
 
 #endif /* define: tools_h */

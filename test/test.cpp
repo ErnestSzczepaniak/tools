@@ -38,34 +38,6 @@ void show_bytes(T & payload)
 
 #include "tools.h"
 
-template<typename R, typename T>
-static inline R address(T & variable)
-{
-    return (R)&variable;
-}
-
-
-#include <type_traits>
-
-
-template<typename T>
-void ttt(T & v, int bits)
-{
-    if (std::is_pointer_v<T&>)
-    {
-        printf("Is pointer\n");
-    }
-    else
-    {
-        printf("Is reference\n");
-    }
-}
-
-template<typename T>
-int ttt(const T & v, int bits)
-{
-    return {};
-}
 
 TEST_CASE("awee")
 {
@@ -79,18 +51,14 @@ TEST_CASE("awee")
 
     show_bytes(awww);
 
-    set::byte::in_memory(awww, 8, 0x22);
-    set::memory(awww, 9, 0x22);
 
-    auto v = byte::shift::left(0xc0, 2, true);
+    unsigned char v = 0x5f;
+    
+    byte::boolean::negate(v, 4, 4);
+
     show_bytes(v);
 
-    auto df = byte::count::bits(0x13, false);
-
-    auto t = byte::boolean::negate(0xff, 0, 4);
-
-
-    show_bytes(t);
+    auto w = mask::create(0, 5);
 
 
     // tools::copy::memory::to_variable()

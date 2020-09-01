@@ -9,31 +9,21 @@
  * @details	
 **/
 
+#include "tools_mask.h"
+
 namespace tools::byte::trim
 {
 
 static inline void left(unsigned char & byte, int bits)
 {
-    unsigned char mask = ((1 << bits) - 1) << (8 - bits);
+    auto mask = mask::create<unsigned char>(8 - bits, bits);
     byte &= ~mask;
-}
-
-static inline constexpr unsigned char left(const unsigned char & byte, int bits)
-{
-    unsigned char mask = ((1 << bits) - 1) << (8 - bits);
-    return (byte & ~mask);
 }
 
 static inline void right(unsigned char & byte, int bits)
 {
-    unsigned char mask = ((1 << bits) - 1);
+    auto mask = mask::create<unsigned char>(0, bits);
     byte &= ~mask;
-}
-
-static inline constexpr unsigned char right(const unsigned char & byte, int bits)
-{
-    unsigned char mask = ((1 << bits) - 1);
-    return (byte & ~mask);
 }
 
 }; /* namespace: tools::byte::trim */

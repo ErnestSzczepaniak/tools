@@ -9,13 +9,12 @@
  * @details	
 **/
 
-#include "tools_copy.h"
-#include "tools_set.h"
-#include "tools_compare.h"
-#include "tools_cast.h"
-#include "tools_invert.h"
-#include "tools_expect.h"
+#include "tools_mask.h"
 
 #include "tools_byte.h"
+#include "tools_byte_shift.h"
+#include "tools_byte_trim.h"
+#include "tools_byte_boolean.h"
+
 
 #endif /* define: tools_h */

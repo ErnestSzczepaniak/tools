@@ -12,9 +12,6 @@
 #include "tools_mask.h"
 
 #include "tools_byte.h"
-#include "tools_byte_shift.h"
-#include "tools_byte_trim.h"
-#include "tools_byte_boolean.h"
-
+#include "tools_string.h"
 
 #endif /* define: tools_h */

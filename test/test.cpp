@@ -18,6 +18,12 @@ void show_bytes(T & payload)
     printf("\r\n");
 }
 
+void show_string(char * string)
+{
+    printf("%s", string);
+    printf("\r\n");
+}
+
 // template<typename T>
 // void show_bits(T & value)
 // {
@@ -49,16 +55,11 @@ TEST_CASE("awee")
         awww[i] = i;
     }
 
-    show_bytes(awww);
 
 
-    unsigned char v = 0x5f;
-    
-    byte::boolean::negate(v, 4, 4);
+    char s[] = "test test sample";
 
-    show_bytes(v);
-
-    auto w = mask::create(0, 5);
+    auto size = string::info::size(s);
 
 
     // tools::copy::memory::to_variable()

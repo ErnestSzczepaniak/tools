@@ -9,7 +9,8 @@
  * @details	
 **/
 
-#include "tools_byte.h"
+#include "tools_byte_get.h"
+#include "tools_byte_set.h"
 
 namespace tools::byte::shift
 {
@@ -19,9 +20,9 @@ static inline void left(unsigned char & byte, int bits, bool wrap = false)
     if (wrap == false) byte = (byte << bits);
     else
     {
-        auto rest = get(byte, 8 - bits, bits);
+        auto rest = get::bits(byte, 8 - bits, bits);
         byte = (byte << bits);
-        set(byte, rest, 0, bits);
+        set::bits(byte, rest, 0, bits);
     }
 }
 
@@ -30,9 +31,9 @@ static inline void right(unsigned char & byte, int bits, bool wrap = false)
     if (wrap == false) byte = (byte >> bits);
     else
     {
-        auto rest = get(byte, 0, bits);
+        auto rest = get::bits(byte, 0, bits);
         byte = (byte >> bits);
-        set(byte, rest, 8 - bits, bits);
+        set::bits(byte, rest, 8 - bits, bits);
     }
 }
 

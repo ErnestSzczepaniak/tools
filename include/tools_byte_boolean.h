@@ -9,7 +9,8 @@
  * @details	
 **/
 
-#include "tools_byte.h"
+#include "tools_byte_get.h"
+#include "tools_byte_set.h"
 
 namespace tools::byte::boolean
 {
@@ -44,7 +45,7 @@ static inline void multiply(unsigned char & byte, T value, int offset = 0, int s
 
 static inline void negate(unsigned char & byte, int offset = 0, int size = 8)
 {
-    set(byte, ~get(byte, offset, size), offset, size);
+    set::bits(byte, ~get::bits(byte, offset, size), offset, size);
 }
 
 }; /* namespace: tools::byte::boolean */

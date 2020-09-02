@@ -12,6 +12,10 @@
 #include "tools_mask.h"
 
 #include "tools_byte.h"
+
+
+
 #include "tools_string.h"
+
 
 #endif /* define: tools_h */

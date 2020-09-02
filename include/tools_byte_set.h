@@ -17,8 +17,8 @@ namespace tools::byte::set
 template<typename T>
 static inline void bits(unsigned char & byte, T value, int offset = 0, int size = 8)
 {
-    auto mask_byte = mask::create<unsigned char>(offset, size);
-    auto mask_value = mask::create<unsigned char>(0, size);
+    auto mask_byte = mask::get::value<unsigned char>(offset, size);
+    auto mask_value = mask::get::value<unsigned char>(0, size);
 
     byte &= ~mask_byte;
     value &= mask_value;
@@ -27,6 +27,5 @@ static inline void bits(unsigned char & byte, T value, int offset = 0, int size 
 }
 
 }; /* namespace: tools::byte::set */
-
 
 #endif /* define: tools_byte_set_h */

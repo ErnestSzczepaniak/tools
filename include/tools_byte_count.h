@@ -4,7 +4,7 @@
 /**
  * @file	tools_byte_count.h
  * @author	en2
- * @date	01-09-2020
+ * @date	02-09-2020
  * @brief	
  * @details	
 **/
@@ -14,7 +14,7 @@
 namespace tools::byte::count
 {
 
-static inline int bits(unsigned char & byte, bool value = true)
+static inline int bits(unsigned char & byte, bool value)
 {
     int count = 0;
 

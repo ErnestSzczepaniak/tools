@@ -9,21 +9,74 @@
  * @details	
 **/
 
-#include "tools_string_info.h"
+
+#include "tools_string_compare.h"
 
 namespace tools::string::get
 {
 
-char * character(char * string, int position)
+static inline int size(char * string, const char * delimiters = "\0")
 {
-    return position > info::size(string) ? &string[position] : nullptr;
+    return strcspn(string, delimiters);
 }
 
-char * word(char * string, int word)
+namespace character
 {
-    for (int i = 0; i < word; i++)
+
+static inline char * by_index(char * string, int index, const char * delimiters = "\0")
+{
+    if (index > size(string, delimiters)) return nullptr;
+
+    return &string[index];
+}
+
+static inline char * by_match(char * string, char * character, const char * delimiters = "\0")
+{
+    for (int i = 0; i < size(string, delimiters); i++)
     {
-        string = strpbrk(string, " ");
+        if (string[i] == *character) return &string[i];
+    }
+    
+    return nullptr;
+}
+
+static inline int occurence(char * string, char * character, const char * delimiters = "\0")
+{
+    auto counter = 0;
+
+    for (int i = 0; i < size(string, delimiters); i++)
+    {
+        if (string[i] == *character) counter++;
+    }
+
+    return counter;
+}
+
+static inline int position(char * string, char * character, const char * delimiters = "\0")
+{
+    for (int i = 0; i < size(string, delimiters); i++)
+    {
+        if (string[i] == *character) return i;
+    }
+    
+    return -1;
+}
+
+static inline int index(char * string, char * character)
+{
+    return position(string, character);
+}
+
+}; /* namespace: character */
+
+namespace word
+{
+
+static inline char * by_index(char * string, int index, const char * delimiters = " ")
+{
+    for (int i = 0; i < index; i++)
+    {
+        string = strpbrk(string, delimiters);
 
         if (string != nullptr) string++;
     }
@@ -31,10 +84,74 @@ char * word(char * string, int word)
     return string;
 }
 
-char * line(char * string, int line)
+static inline int count(char * string, const char * delimiters = " ")
 {
+    auto counter = 0;
+    auto iterator = 0;
 
+    while(true)
+    {
+        if (by_index(string, iterator++, delimiters) != nullptr) counter++;
+        else break;
+    }
+    
+    return counter;
 }
+
+static inline char * by_match(char * string, char * word, const char * delimiters = " ")
+{
+    for (int i = 0; i < count(string, delimiters); i++)
+    {
+        auto * current = by_index(string, i, delimiters);
+
+        if (compare::equality(current, word, delimiters) == true) return current;
+    }
+
+    return nullptr;
+}
+
+static inline int size(char * word, const char * delimiters = " ")
+{
+    return strcspn(word, delimiters);
+}
+
+static inline int occurence(char * string, char * word, const char * delimiters = " ")
+{
+    auto counter = 0;
+
+    for (int i = 0; i < count(string, delimiters); i++)
+    {
+        auto * current = by_index(string, i, delimiters);
+
+        if (compare::equality(current, word, delimiters) == true) counter++;
+    }
+    
+    return counter;
+}
+
+static inline int position(char * string, char * word, const char * delimiters = " ")
+{
+    auto * ptr = by_match(string, word, delimiters);
+
+    return (ptr - string);
+}
+
+static inline int index(char * string, char * word, const char * delimiters = " ")
+{
+    auto counter = 0;
+
+    for (int i = 0; i < count(string, delimiters); i++)
+    {
+        auto * current = by_index(string, i, delimiters);
+
+        if (compare::equality(current, word, delimiters) == true) return counter;
+        else counter++;
+    }
+    
+    return -1;
+}
+
+}; /* namespace: word */
 
 }; /* namespace: tools::string::get */
 

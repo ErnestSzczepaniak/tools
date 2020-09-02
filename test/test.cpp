@@ -55,13 +55,20 @@ TEST_CASE("awee")
         awww[i] = i;
     }
 
+    char s[20] = "test test sample";
+
+    unsigned char a = 0;
+    unsigned char b = 0xc0;
+
+    auto pos = byte::find::bits(b, 0x3, 2);
+
+    auto ree = byte::compare::difference(a, b);
 
 
-    char s[] = "test test sample";
 
-    auto size = string::info::size(s);
-
+    string::append::format(s, 20, "%s%d", "piczka", 2);
 
     // tools::copy::memory::to_variable()
+
 
 }

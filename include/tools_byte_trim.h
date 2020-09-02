@@ -16,13 +16,13 @@ namespace tools::byte::trim
 
 static inline void left(unsigned char & byte, int bits)
 {
-    auto mask = mask::create<unsigned char>(8 - bits, bits);
+    auto mask = mask::get::value<unsigned char>(8 - bits, bits);
     byte &= ~mask;
 }
 
 static inline void right(unsigned char & byte, int bits)
 {
-    auto mask = mask::create<unsigned char>(0, bits);
+    auto mask = mask::get::value<unsigned char>(0, bits);
     byte &= ~mask;
 }
 

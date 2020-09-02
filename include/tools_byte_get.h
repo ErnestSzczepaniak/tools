@@ -16,12 +16,11 @@ namespace tools::byte::get
 
 static inline unsigned char bits(unsigned char & byte, int offset = 0, int size = 8)
 {
-    auto mask = mask::create<unsigned char>(offset, size);
+    auto mask = mask::get::value<unsigned char>(offset, size);
 
     return ((byte & mask) >> offset);
 }
 
 }; /* namespace: tools::byte::get */
-
 
 #endif /* define: tools_byte_get_h */

@@ -9,9 +9,10 @@
  * @details	
 **/
 
+#include "tools_string_get.h"
+
 namespace tools::string::set
 {
-
 
 
 }; /* namespace: tools::string::set */

@@ -12,7 +12,12 @@
 namespace tools::string::invert
 {
 
-static inline void characters(char * string, int offset, int size)
+static inline void characters(char * string, int offset = 0, int size = 0)
+{
+
+}
+
+static inline void words(char * string)
 {
 
 }

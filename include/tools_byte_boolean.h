@@ -18,7 +18,7 @@ namespace tools::byte::boolean
 template<typename T>
 static inline void add(unsigned char & byte, T value, int offset = 0, int size = 8)
 {
-    auto mask_value = mask::create<unsigned char>(0, size);
+    auto mask_value = mask::get::value<unsigned char>(0, size);
 
     value &= mask_value;
 
@@ -28,7 +28,7 @@ static inline void add(unsigned char & byte, T value, int offset = 0, int size =
 template<typename T>
 static inline void xadd(unsigned char & byte, T value, int offset = 0, int size = 8)
 {
-    auto mask_value = mask::create<unsigned char>(0, size);
+    auto mask_value = mask::get::value<unsigned char>(0, size);
 
     value &= mask_value;
 
@@ -38,7 +38,7 @@ static inline void xadd(unsigned char & byte, T value, int offset = 0, int size 
 template<typename T>
 static inline void multiply(unsigned char & byte, T value, int offset = 0, int size = 8)
 {
-    auto mask_value = mask::create<unsigned char>(0, size);
+    auto mask_value = mask::get::value<unsigned char>(0, size);
 
     byte &= (value << offset);
 }

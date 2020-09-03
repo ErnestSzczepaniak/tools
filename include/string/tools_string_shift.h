@@ -12,6 +12,19 @@
 namespace tools::string::shift
 {
 
+namespace left
+{
+
+
+
+}; /* namespace: left */
+
+namespace right
+{
+
+
+
+}; /* namespace: right */
 
 
 }; /* namespace: tools::string::shift */

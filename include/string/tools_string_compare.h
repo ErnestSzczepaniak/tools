@@ -21,7 +21,7 @@ static inline int difference(char * string_1, char * string_2, const char * deli
 
     if (size_1 != size_2)
     {
-        return (size_1 < size_2) ? size_1 : size_2;
+        return (size_1 < size_2) ? size_1 + 1 : size_2 + 1;
     }
     else
     {

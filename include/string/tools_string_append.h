@@ -10,7 +10,7 @@
 **/
 
 #include "stdio.h"
-#include "tools_string_get.h"
+#include "tools_string_count.h"
 
 namespace tools::string::append
 {
@@ -18,7 +18,7 @@ namespace tools::string::append
 template<typename ...Args>
 static inline void format(char * string, int size, const char * format, Args ... args)
 {
-    auto size_current = get::size(string);
+    auto size_current = count::characters(string);
 
     snprintf(&string[size_current], size - size_current, format, args...);
 }

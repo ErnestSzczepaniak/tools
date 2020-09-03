@@ -60,11 +60,13 @@ TEST_CASE("awee")
     unsigned char a = 0;
     unsigned char b = 0xc0;
 
+    byte::trim::left::bits(a, 3);
+    string::trim::left::characters(nullptr, 2);
+
+
     auto pos = byte::find::bits(b, 0x3, 2);
 
     auto ree = byte::compare::difference(a, b);
-
-
 
     string::append::format(s, 20, "%s%d", "piczka", 2);
 

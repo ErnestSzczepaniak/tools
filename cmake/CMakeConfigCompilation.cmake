@@ -31,7 +31,10 @@ set(public_include_common       )
 set(public_include_target       )
 set(public_include_host         )
 
-set(private_include_common      )
+set(private_include_common      include/byte/
+                                include/mask/
+                                include/string/
+                                include/variable/)
 set(private_include_target      )
 set(private_include_host        )
 

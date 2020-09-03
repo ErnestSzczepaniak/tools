@@ -16,6 +16,6 @@
 
 
 #include "tools_string.h"
-
+#include "tools_variable.h"
 
 #endif /* define: tools_h */

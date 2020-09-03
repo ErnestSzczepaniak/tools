@@ -4,6 +4,10 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/include",
+                "${workspaceFolder}/include/byte/",
+                "${workspaceFolder}/include/mask/",
+                "${workspaceFolder}/include/string",
+                "${workspaceFolder}/include/variable/",
                 "${workspaceFolder}/../designer/",
                 "${workspaceFolder}/../"
             ],

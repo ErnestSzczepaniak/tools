@@ -1,12 +1,6 @@
 #include "test.h"
 #include "tools.h"
 
-struct Te
-{
-    int k2;
-}; /* structure: T */
-
-
 template<typename T>
 void show_bytes(T & payload)
 {
@@ -24,23 +18,28 @@ void show_string(char * string)
     printf("\r\n");
 }
 
-// template<typename T>
-// void show_bits(T & value)
-// {
-//     int w = 0;
+template<typename T>
+void show_bits(T & value)
+{
+    auto * ptr = tools::variable::get::address(value);
 
-//     for (int i = 0; i < sizeof(T) * 8; i++)
-//     {
-//         printf("%d ", tools::bit::get(value, i, tools::bit::Order::MSB));
-//         w++;
-//         if (w == 8)
-//         {
-//             printf(", ");
-//             w = 0;
-//         }
-//     }
-//     printf("\r\n");
-// }
+    for (int i = 0; i < sizeof(T); i++)
+    {
+        auto byte = ptr[i];
+
+        printf("[");
+
+        for (int i = 0; i < 8; i++)
+        {
+            printf("%d", tools::byte::get::bits(byte, 7 - i, 1));
+        }
+
+        printf("]");
+    }
+    
+    printf("\r\n");
+
+}
 
 #include "tools.h"
 
@@ -49,26 +48,19 @@ TEST_CASE("awee")
 {
     using namespace tools;
 
-    unsigned char awww[9];
-    for (int i = 0; i < 9; i++)
+    unsigned char mem[8];
+    
+    for (int i = 0; i < 8; i++)
     {
-        awww[i] = i;
+        mem[i] = i;
     }
-
-    char s[20] = "test test sample";
-
-    unsigned char a = 0;
-    unsigned char b = 0xc0;
-
-    byte::trim::left::bits(a, 3);
-    string::trim::left::characters(nullptr, 2);
+    
+    show_bytes(mem);
 
 
-    auto pos = byte::find::bits(b, 0x3, 2);
+    memory::shift::left::bytes(mem, 8, 1, true);
 
-    auto ree = byte::compare::difference(a, b);
-
-    string::append::format(s, 20, "%s%d", "piczka", 2);
+    show_bytes(mem);
 
     // tools::copy::memory::to_variable()
 

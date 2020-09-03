@@ -15,6 +15,11 @@
 namespace tools::string::get
 {
 
+static inline int size(char * string, const char * delimiters = "\0")
+{
+    return strcspn(string, delimiters);
+}
+
 static inline char * word(char * string, int index, const char * delimiters = " ")
 {
     for (int i = 0; i < index; i++)

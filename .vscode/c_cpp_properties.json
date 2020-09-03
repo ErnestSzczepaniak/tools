@@ -5,8 +5,10 @@
             "includePath": [
                 "${workspaceFolder}/include",
                 "${workspaceFolder}/include/byte/",
+                "${workspaceFolder}/include/memory/",
                 "${workspaceFolder}/include/mask/",
                 "${workspaceFolder}/include/string",
+                "${workspaceFolder}/include/value/",
                 "${workspaceFolder}/include/variable/",
                 "${workspaceFolder}/../designer/",
                 "${workspaceFolder}/../"

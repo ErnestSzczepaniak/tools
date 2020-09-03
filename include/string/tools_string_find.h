@@ -20,7 +20,7 @@ namespace position
 
 static inline int character(char * string, char * character)
 {
-    for (int i = 0; i < count::characters(string); i++)
+    for (int i = 0; i < get::size(string); i++)
     {
         if (string[i] == *character) return i;
     }

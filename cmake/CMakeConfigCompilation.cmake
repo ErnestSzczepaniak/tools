@@ -33,7 +33,9 @@ set(public_include_host         )
 
 set(private_include_common      include/byte/
                                 include/mask/
+                                include/memory/
                                 include/string/
+                                include/value/
                                 include/variable/)
 set(private_include_target      )
 set(private_include_host        )

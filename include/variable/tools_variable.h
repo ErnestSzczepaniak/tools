@@ -9,6 +9,13 @@
  * @details	
 **/
 
+#include "tools_variable_compare.h"
+#include "tools_variable_count.h"
+#include "tools_variable_find.h"
+#include "tools_variable_get.h"
+#include "tools_variable_invert.h"
+#include "tools_variable_set.h"
 #include "tools_variable_shift.h"
+#include "tools_variable_trim.h"
 
 #endif /* define: tools_variable_h */

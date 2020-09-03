@@ -14,16 +14,11 @@
 namespace tools::string::count
 {
 
-static inline int characters(char * string, const char * delimiters = "\0")
-{
-    return strcspn(string, delimiters);
-}
-
 static inline int character(char * string, char character)
 {
     auto counter = 0;
 
-    for (int i = 0; i < characters(string); i++)
+    for (int i = 0; i < get::size(string); i++)
     {
         if (string[i] == character) counter++;
     }

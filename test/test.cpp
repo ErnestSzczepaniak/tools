@@ -43,24 +43,52 @@ void show_bits(T & value)
 
 #include "tools.h"
 
+int divisor(int a, int b)
+{
+    return (b == 0) ? a : divisor(b, a % b);
+}
+
+
+
+
 
 TEST_CASE("awee")
 {
     using namespace tools;
 
-    unsigned char mem[8];
-    
-    for (int i = 0; i < 8; i++)
+    unsigned char mem[5];
+    auto size = sizeof(mem);
+    auto number = 2;
+    auto * ptr = mem;
+
+    for (int i = 0; i < sizeof(mem); i++)
     {
         mem[i] = i;
     }
     
     show_bytes(mem);
 
+    auto gcd = divisor(number, size);
 
-    memory::shift::left::bytes(mem, 8, 1, true);
+    for (int i = 0; i < gcd; i++)
+    {
+        auto temp = ptr[i];
+
+        auto index = i;
+
+        for (int j = 0; j < size / number; j++)
+        {
+            ptr[index] = ptr[(index + number) % size];
+            index = (index + number) % size;
+        }
+        
+        ptr[size / number - 1] = temp;
+    }
+    
+
 
     show_bytes(mem);
+
 
     // tools::copy::memory::to_variable()
 

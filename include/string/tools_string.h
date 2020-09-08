@@ -14,7 +14,7 @@
 #include "tools_string_set.h"
 #include "tools_string_shift.h"
 #include "tools_string_compare.h"
-#include "tools_string_append.h"
+#include "tools_string_insert.h"
 #include "tools_string_count.h"
 #include "tools_string_find.h"
 

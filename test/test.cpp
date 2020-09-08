@@ -48,46 +48,24 @@ int divisor(int a, int b)
     return (b == 0) ? a : divisor(b, a % b);
 }
 
-
-
-
-
 TEST_CASE("awee")
 {
     using namespace tools;
 
-    unsigned char mem[5];
-    auto size = sizeof(mem);
-    auto number = 2;
-    auto * ptr = mem;
+    char tab[16] = {0};
 
-    for (int i = 0; i < sizeof(mem); i++)
-    {
-        mem[i] = i;
-    }
-    
-    show_bytes(mem);
+    string::insert::append::format(tab, 16, "%s", "picz");
 
-    auto gcd = divisor(number, size);
+    show_string(tab);
 
-    for (int i = 0; i < gcd; i++)
-    {
-        auto temp = ptr[i];
+    string::insert::preppend::format(tab, 16, "%d s", 10);
 
-        auto index = i;
+    string::insert::preppend::format(tab, 16, "_");
 
-        for (int j = 0; j < size / number; j++)
-        {
-            ptr[index] = ptr[(index + number) % size];
-            index = (index + number) % size;
-        }
-        
-        ptr[size / number - 1] = temp;
-    }
-    
+    show_string(tab);
 
 
-    show_bytes(mem);
+    // show_bytes(mem);
 
 
     // tools::copy::memory::to_variable()

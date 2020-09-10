@@ -9,6 +9,8 @@
  * @details	
 **/
 
+#include "tools_string_get.h"
+
 namespace tools::string::trim
 {
 
@@ -17,7 +19,10 @@ namespace left
 
 static inline void characters(char * string, int number)
 {
+    auto size = get::size(string);
 
+    memmove(string, string + number, size - number);
+    memset(&string[size - number], 0, number);
 }
 
 static inline void words(char * string, int number)
@@ -33,7 +38,9 @@ namespace right
 
 static inline void characters(char * string, int number)
 {
+    auto size = get::size(string);
 
+    memset(&string[size - number], 0, number);
 }
 
 static inline void words(char * string, int number)
@@ -42,6 +49,22 @@ static inline void words(char * string, int number)
 }
 
 }; /* namespace: right */
+
+namespace middle
+{
+
+static inline void characters(char * string, int offset, int number)
+{
+    auto size = get::size(string);
+
+    if (offset + number > size) return;
+
+    memmove(&string[offset], &string[offset + number], size - number);
+    memset(&string[size - number], 0, number);
+}
+
+}; /* namespace: middle */
+
 
 }; /* namespace: tools::string::trim */
 

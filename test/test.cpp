@@ -38,7 +38,6 @@ void show_bits(T & value)
     }
     
     printf("\r\n");
-
 }
 
 #include "tools.h"
@@ -52,20 +51,11 @@ TEST_CASE("awee")
 {
     using namespace tools;
 
-    char tab[16] = {0};
+    char tab[16] = "sample_string";
 
-    string::insert::append::format(tab, 16, "%s", "picz");
-
-    show_string(tab);
-
-    string::insert::preppend::format(tab, 16, "%d s", 10);
-
-    string::insert::preppend::format(tab, 16, "_");
+    string::trim::middle::characters(tab, 2, 2);
 
     show_string(tab);
-
-
-    // show_bytes(mem);
 
 
     // tools::copy::memory::to_variable()

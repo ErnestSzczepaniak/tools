@@ -28,6 +28,8 @@ static inline int character(char * string, char character)
 
 static inline int words(char * string, const char * delimiters = " ")
 {
+    if (*string == 0) return 0;
+
     auto counter = 0;
     auto iterator = 0;
 

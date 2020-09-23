@@ -15,6 +15,28 @@
 namespace tools::string::find
 {
 
+static inline char * substring(char *s1, char *s2, int n) 
+{
+    // simplistic algorithm with O(n2) worst case
+    size_t i, len;
+    char c = *s2;
+
+    if (c == '\0')
+        return (char *)s1;
+
+    for (len = strlen(s2); len <= n; n--, s1++) {
+        if (*s1 == c) {
+            for (i = 1;; i++) {
+                if (i == len)
+                    return (char *)s1;
+                if (s1[i] != s2[i])
+                    break;
+            }
+        }
+    }
+    return NULL;
+}
+
 namespace position
 {
 

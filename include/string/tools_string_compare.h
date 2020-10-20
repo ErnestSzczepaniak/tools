@@ -31,6 +31,11 @@ static inline int difference(char * string_1, char * string_2, const char * deli
     return -1;
 }
 
+static inline int difference(char * string_1, char * string_2, int size)
+{
+    return strncmp(string_1, string_2, size);
+}
+
 static inline bool equality(char * string_1, char * string_2, const char * delimiters = "\0")
 {
     return (difference(string_1, string_2, delimiters) == 0);

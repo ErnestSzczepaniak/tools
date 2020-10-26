@@ -15,13 +15,13 @@ namespace tools::variable::count
 template<typename T>
 static inline int bits(T & variable, bool value)
 {
-
+    return 0;
 }
 
 template<typename T>
 static inline int bytes(T & variable, unsigned char value)
 {
-    
+    return 0;
 }
 
 }; /* namespace: tools::variable::count */

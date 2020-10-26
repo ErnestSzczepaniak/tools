@@ -47,16 +47,25 @@ int divisor(int a, int b)
     return (b == 0) ? a : divisor(b, a % b);
 }
 
+bool substring(char * c1, char * c2, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (tools::string::compare::equality(c1, c2) == true) return true;
+        else c1++;
+    }
+
+    return false;
+}
+
 TEST_CASE("awee")
 {
     using namespace tools;
 
-    char tab[16] = "sample_string";
-
-    string::trim::middle::characters(tab, 2, 2);
-
-    show_string(tab);
-
+    char * c1 =  "set_time time -c";
+    char * c2 = "time";
+    
+    auto c = string::count::word(c1, c2);
 
     // tools::copy::memory::to_variable()
 

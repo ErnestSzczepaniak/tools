@@ -60,14 +60,12 @@ bool substring(char * c1, char * c2, int size)
 
 TEST_CASE("awee")
 {
-    using namespace tools;
-
-    char * c1 =  "set_time time -c";
-    char * c2 = "time";
-    
-    auto c = string::count::word(c1, c2);
-
-    // tools::copy::memory::to_variable()
+    REQUIRE(1 == 1);
 
 
+}
+
+TEST_CASE("qweqwe")
+{
+    REQUIRE(true == false);
 }
